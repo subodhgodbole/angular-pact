@@ -4,10 +4,9 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular', 'pact'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
-      require('@pact-foundation/karma-pact'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
@@ -33,12 +32,6 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    pact: [{
-      cors: true,
-      spec: 3,
-      host: 'localhost',
-      port: 1234
-    }],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
