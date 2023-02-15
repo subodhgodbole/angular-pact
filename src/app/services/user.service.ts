@@ -20,19 +20,30 @@ export class UserService {
   }
 
   public create(resource: User): Observable<string> {
-    return this.httpClient.post<User>(this.path, resource).pipe(
+    return this.httpClient.post<User>(this.path, resource, this.getHttpOptions()).pipe(
       map(data => data.id));
   }
 
   public get(id: string): Observable<User> {
     const path = `${this.path}/${id}`;
-    console.log(`**** UserService.get(): ${path}`);
-    return this.httpClient.get<User>(path).pipe(tap( (param) => {
-      console.log(`**** UserService.get(): Pipe: ${param}`);
-    }));
+    return this.httpClient.get<User>(path, this.getHttpOptions());
+  }
+
+  public getAll(): Observable<User[]> {
+    const path = `${this.path}`;
+    return this.httpClient.get<User[]>(path, this.getHttpOptions());
   }
 
   public update(user: User): Observable<User> {
-    return this.httpClient.put<User>(`${this.path}/${user.id}`, user);
+    return this.httpClient.put<User>(`${this.path}/${user.id}`, user, this.getHttpOptions());
+  }
+
+  // As a sample writting this here.
+  private getHttpOptions() {
+    return {
+      headers: {
+        Accept: 'application/json'
+      }
+    }
   }
 }

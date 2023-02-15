@@ -12,7 +12,12 @@
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.spec.ts",
+    "src/**/*.karma.spec.ts",
     "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.jest.spec.ts",
+    "src/**/*.pact.spec.ts",
   ]
 }
